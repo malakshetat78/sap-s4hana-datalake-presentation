@@ -1,0 +1,121 @@
+/* ===========================================================
+   SAP S/4HANA -> AWS Data Lake — shared design system
+   Palette: white background, deep navy for structure/text,
+   one soft-gold accent reserved for interactive + winner states.
+   No underlines, no colored side stripes. Rounded corners + soft shadow.
+   =========================================================== */
+
+:root {
+  --navy: #0B1F3A;
+  --navy-light: #1B3A63;   /* lighter navy for the second comparison column */
+  --navy-soft: #16305A;    /* mid tone, used for subtle panels on navy */
+  --white: #FFFFFF;
+  --paper: #F6F8FB;        /* faint off-white for section backgrounds, still reads as "white" */
+  --ink-muted: #5B6B84;    /* muted navy-gray for secondary body text on white */
+  --accent: #D9A94E;       /* soft gold — buttons, highlights, winner states ONLY */
+  --accent-dark: #B8872F;
+  --accent-soft: #F3E3C2;
+
+  --shadow-sm: 0 2px 10px rgba(11, 31, 58, 0.08);
+  --shadow-md: 0 8px 28px rgba(11, 31, 58, 0.14);
+  --shadow-lg: 0 18px 48px rgba(11, 31, 58, 0.22);
+
+  --radius: 18px;
+  --radius-sm: 12px;
+
+  --font-head: "Segoe UI Semibold", "Segoe UI", Arial, sans-serif;
+  --font-body: "Segoe UI Light", "Segoe UI", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--white);
+  color: var(--navy);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  font-weight: 800;
+  color: var(--navy);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--navy);
+  margin: 0;
+}
+
+button {
+  font-family: var(--font-head);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 30px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); background: var(--accent-dark); color: var(--white); }
+.btn:active { transform: translateY(0); }
+.btn.ghost {
+  background: var(--white);
+  color: var(--navy);
+  box-shadow: var(--shadow-sm);
+}
+.btn.ghost:hover { background: var(--paper); color: var(--navy); }
+.btn.on-navy {
+  background: var(--white);
+  color: var(--navy);
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 28px;
+}
+
+.pill {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+::selection { background: var(--accent-soft); color: var(--navy); }
+
+/* simple line icon strokes */
+.icon {
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

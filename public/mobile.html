@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<title>Order the Roadmap — SAP S/4HANA → AWS Data Lake</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/game.css" />
+</head>
+<body class="mobile-body">
+
+<!-- SCREEN 1: name entry -->
+<section class="screen active" id="screen-name">
+  <div class="mobile-wrap">
+    <span class="pill">The Roadmap Challenge</span>
+    <h1 class="mobile-h1">Order the Roadmap</h1>
+    <p class="mobile-sub">Arrange the 9 phases in the correct order — fastest correct order wins.</p>
+    <input class="name-input" id="name-input" type="text" placeholder="Your name or nickname" maxlength="24" autocomplete="off" />
+    <button class="btn" id="start-btn" disabled>Start</button>
+  </div>
+</section>
+
+<!-- SCREEN 2: drag & drop game -->
+<section class="screen" id="screen-game">
+  <header class="game-header">
+    <span class="game-timer" id="timer">00:00.0</span>
+    <span class="game-hint">Drag to reorder</span>
+  </header>
+  <div class="card-stack" id="card-stack"></div>
+  <button class="btn submit-btn" id="submit-btn">Submit</button>
+</section>
+
+<!-- SCREEN 3: waiting / result -->
+<section class="screen" id="screen-result">
+  <div class="mobile-wrap">
+    <span class="pill" id="result-pill">Submitted</span>
+    <h1 class="mobile-h1" id="result-title">Nice work!</h1>
+    <p class="mobile-sub" id="result-detail">Calculating your result…</p>
+    <p class="result-note">Look up at the big screen for the live leaderboard.</p>
+  </div>
+</section>
+
+<!-- SCREEN: competition closed -->
+<section class="screen" id="screen-closed">
+  <div class="mobile-wrap">
+    <span class="pill">Competition Closed</span>
+    <h1 class="mobile-h1">The round has ended</h1>
+    <p class="mobile-sub">Thanks for playing! Check the big screen for the final results.</p>
+  </div>
+</section>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/phases-data.js"></script>
+<script src="js/mobile.js"></script>
+</body>
+</html>

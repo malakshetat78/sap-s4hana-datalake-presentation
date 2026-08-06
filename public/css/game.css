@@ -1,0 +1,237 @@
+/* Shared game styling — mobile player page + big screen leaderboard/podium */
+
+.screen {
+  position: fixed;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  padding: 6vh 6vw;
+  text-align: center;
+}
+.screen.active { display: flex; }
+
+/* ---------- Mobile: name entry & result screens ---------- */
+.mobile-body { overscroll-behavior: none; }
+.mobile-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 420px; }
+.mobile-h1 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+.mobile-sub { color: var(--ink-muted); font-size: 1rem; }
+.result-note { color: var(--ink-muted); font-size: 0.85rem; margin-top: 18px; }
+
+.name-input {
+  width: 100%;
+  margin-top: 10px;
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: var(--paper);
+  box-shadow: var(--shadow-sm);
+  font-size: 1.05rem;
+  font-family: var(--font-body);
+  color: var(--navy);
+  text-align: center;
+}
+.name-input:focus { outline: 2px solid var(--accent); }
+
+/* ---------- Mobile: game screen (drag & drop) ---------- */
+#screen-game {
+  justify-content: flex-start;
+  padding-top: 4vh;
+  padding-bottom: 4vh;
+}
+.game-header {
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  flex-shrink: 0;
+}
+.game-timer {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--navy);
+  background: var(--paper);
+  padding: 8px 16px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+  font-variant-numeric: tabular-nums;
+}
+.game-hint { color: var(--ink-muted); font-size: 0.82rem; }
+
+.card-stack {
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  overflow-y: auto;
+  padding: 2px;
+}
+.phase-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  padding: 14px 16px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+.phase-card.dragging {
+  cursor: grabbing;
+  box-shadow: var(--shadow-lg);
+  transform: scale(1.03);
+  opacity: 0.96;
+}
+.card-index {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.card-title {
+  flex: 1;
+  text-align: left;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.card-handle {
+  flex-shrink: 0;
+  color: rgba(255,255,255,0.5);
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+.submit-btn {
+  margin-top: 18px;
+  width: 100%;
+  max-width: 460px;
+  flex-shrink: 0;
+}
+
+/* ---------- Big screen: leaderboard ---------- */
+.screen-title {
+  font-size: clamp(1.6rem, 3.6vw, 2.6rem);
+  margin-bottom: 6px;
+}
+.screen-sub { color: var(--ink-muted); margin-bottom: 4vh; }
+
+.leaderboard-wrap { width: 100%; max-width: 900px; }
+.leaderboard-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 140px 110px;
+  align-items: center;
+  gap: 16px;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  padding: 16px 24px;
+  margin-bottom: 10px;
+  text-align: left;
+  animation: rowIn 0.4s ease both;
+}
+@keyframes rowIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.leaderboard-row.rank-1 { box-shadow: var(--shadow-md); border: none; background: linear-gradient(0deg, var(--accent-soft), var(--white)); }
+.lb-rank {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--navy);
+}
+.lb-name { font-family: var(--font-head); font-weight: 700; font-size: 1.15rem; }
+.lb-detail { color: var(--ink-muted); font-size: 0.85rem; }
+.lb-score { font-family: var(--font-head); font-weight: 800; font-size: 1.2rem; color: var(--accent-dark); text-align: right; }
+.lb-waiting { color: var(--ink-muted); font-style: italic; }
+
+.empty-state { color: var(--ink-muted); margin-top: 40px; font-size: 1.1rem; }
+
+.admin-bar {
+  position: fixed;
+  bottom: 22px;
+  right: 26px;
+  display: flex;
+  gap: 10px;
+}
+.admin-bar .btn.ghost { font-size: 0.85rem; padding: 10px 20px; }
+
+/* ---------- Big screen: podium ---------- */
+#screen-podium { background: var(--navy); color: var(--white); }
+.podium-heading { color: var(--white); font-size: clamp(1.6rem, 3.4vw, 2.4rem); margin-bottom: 6vh; }
+.podium-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 28px;
+  width: 100%;
+  max-width: 900px;
+}
+.podium-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.podium-slot.show { opacity: 1; transform: translateY(0); }
+.podium-name { font-family: var(--font-head); font-weight: 700; font-size: 1.15rem; color: var(--white); }
+.podium-score { color: rgba(255,255,255,0.7); font-size: 0.85rem; }
+.podium-block {
+  width: 160px;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--navy-light);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 14px;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: var(--white);
+}
+.podium-slot--2 .podium-block { height: 130px; }
+.podium-slot--3 .podium-block { height: 90px; }
+.podium-slot--1 .podium-block {
+  height: 175px;
+  width: 190px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+  color: var(--navy);
+}
+.podium-slot--1.show .podium-name {
+  animation: winnerPulse 1.8s ease-in-out 0.6s 1;
+}
+.podium-slot--1.show {
+  filter: drop-shadow(0 0 26px rgba(217, 169, 78, 0.55));
+}
+@keyframes winnerPulse {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.18); }
+  60% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 620px) {
+  .leaderboard-row { grid-template-columns: 40px 1fr 90px; }
+  .lb-detail { display: none; }
+  .podium-block { width: 100px !important; }
+}

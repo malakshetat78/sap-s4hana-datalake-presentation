@@ -1,0 +1,14 @@
+{
+  "name": "sap-s4hana-datalake-presentation",
+  "version": "1.0.0",
+  "description": "Interactive presentation and live game: SAP S/4HANA -> AWS Data Lake",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "qrcode": "^1.5.3",
+    "socket.io": "^4.7.5"
+  }
+}

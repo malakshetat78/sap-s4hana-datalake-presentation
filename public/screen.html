@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Live Leaderboard — SAP S/4HANA → AWS Data Lake</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/game.css" />
+</head>
+<body>
+
+<!-- LEADERBOARD -->
+<section class="screen active" id="screen-leaderboard">
+  <span class="pill">The Roadmap Challenge</span>
+  <h1 class="screen-title">Live Leaderboard</h1>
+  <p class="screen-sub" id="player-count">Waiting for players to join…</p>
+  <div class="leaderboard-wrap" id="leaderboard-wrap">
+    <p class="empty-state">Scan the QR code on the presentation to join.</p>
+  </div>
+</section>
+
+<!-- PODIUM -->
+<section class="screen" id="screen-podium">
+  <h2 class="podium-heading">🏆 Final Results</h2>
+  <div class="podium-row">
+    <div class="podium-slot podium-slot--2" id="slot-2">
+      <div class="podium-name">—</div>
+      <div class="podium-score">—</div>
+      <div class="podium-block">2</div>
+    </div>
+    <div class="podium-slot podium-slot--1" id="slot-1">
+      <div class="podium-name">—</div>
+      <div class="podium-score">—</div>
+      <div class="podium-block">1</div>
+    </div>
+    <div class="podium-slot podium-slot--3" id="slot-3">
+      <div class="podium-name">—</div>
+      <div class="podium-score">—</div>
+      <div class="podium-block">3</div>
+    </div>
+  </div>
+</section>
+
+<div class="admin-bar">
+  <button class="btn ghost" id="reset-btn">Reset Round</button>
+  <button class="btn" id="close-btn">Close Competition</button>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/screen.js"></script>
+</body>
+</html>

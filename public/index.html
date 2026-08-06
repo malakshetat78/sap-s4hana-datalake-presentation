@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>SAP S/4HANA → AWS Data Lake</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/deck.css" />
+</head>
+<body>
+
+<!-- subtle "data lake" wave motif, fixed behind every slide -->
+<svg class="wave-bg" viewBox="0 0 2400 220" preserveAspectRatio="none" aria-hidden="true">
+  <path class="wave-path wave-path--back" d="M0,110 C 200,180 400,40 600,110 C 800,180 1000,40 1200,110 C 1400,180 1600,40 1800,110 C 2000,180 2200,40 2400,110 L2400,220 L0,220 Z" />
+  <path class="wave-path wave-path--front" d="M0,140 C 200,80 400,200 600,140 C 800,80 1000,200 1200,140 C 1400,80 1600,200 1800,140 C 2000,80 2200,200 2400,140 L2400,220 L0,220 Z" />
+</svg>
+
+<div class="deck" id="deck">
+
+  <!-- 0 — TITLE -->
+  <section class="slide slide--title" data-index="0">
+    <div class="reveal reveal-1 title-mark">DATA STRATEGY BRIEFING</div>
+    <h1 class="reveal reveal-2 title-main">SAP S/4HANA <span class="arrow">→</span> AWS Data Lake</h1>
+    <p class="reveal reveal-3 title-sub">Why the business needs both — and how we get there.</p>
+    <button class="reveal reveal-4 btn next-btn" data-goto="1">Begin<svg class="icon" width="18" height="18" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </section>
+
+  <!-- 1 — OPENING: SEQUENTIAL REVEAL -->
+  <section class="slide slide--opening" data-index="1">
+    <div class="opening-flow">
+      <h2 class="reveal reveal-1">Why not just use SAP S/4HANA?<br />Why do we need a Data Lake?</h2>
+      <p class="reveal reveal-2 body-lg">
+        At first, it sounds like SAP should be enough. It already stores business data, so why introduce
+        another platform? The answer is simple: SAP S/4HANA is built to run the business.
+        A Data Lake is built to unlock the value of the business data.
+      </p>
+
+      <div class="reveal reveal-3 opening-block">
+        <span class="pill">The Difference</span>
+        <p class="body-lg">
+          SAP S/4HANA is an ERP system designed for day-to-day operations such as sales, finance,
+          procurement, inventory, and other business transactions. A Data Lake, on the other hand,
+          is designed for analytics, AI, and advanced reporting. It combines data not only from SAP
+          but also from CRM systems, websites, mobile applications, IoT devices, and many other sources.
+        </p>
+      </div>
+
+      <div class="reveal reveal-4 opening-block">
+        <span class="pill">Business Value</span>
+        <blockquote class="quote-box">
+          "If tomorrow the CEO asks: <em>'Show me how website activity affects vehicle sales and
+          customer service.'</em> SAP alone cannot easily answer that because not all of this data
+          exists inside SAP. A Data Lake brings all these data sources together into one place,
+          making it possible to generate insights, build AI models, and support better business decisions."
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 — CLOSING OF SECTION 1 -->
+  <section class="slide slide--closing" data-index="2">
+    <p class="reveal reveal-1 closing-text">
+      SAP S/4HANA runs the business.<br />
+      A Data Lake helps the business learn, predict, and innovate.<br /><br />
+      <strong>That's why we use both</strong> — but when it comes to analytics and AI,
+      the Data Lake is the right foundation.
+    </p>
+  </section>
+
+  <!-- 3 — ROADMAP INTRO -->
+  <section class="slide slide--section-intro" data-index="3">
+    <svg class="icon section-icon reveal reveal-1" width="34" height="34" viewBox="0 0 24 24"><path d="M3 17c2-2 4 2 6 0s4 2 6 0 4 2 6 0M3 12c2-2 4 2 6 0s4 2 6 0 4 2 6 0"/></svg>
+    <span class="reveal reveal-1 pill">The Roadmap</span>
+    <h2 class="reveal reveal-2">Nine Phases, One Continuous Journey</h2>
+    <p class="reveal reveal-3 body-lg intro-sub">From getting SAP ready, to generative AI, to running it all in production.</p>
+  </section>
+
+  <!-- 4 — ROADMAP: INTERACTIVE FLIP CARDS -->
+  <section class="slide slide--roadmap" data-index="4">
+    <h3 class="reveal reveal-1 roadmap-heading">The Roadmap — 9 Phases</h3>
+    <p class="reveal reveal-2 body-lg intro-sub roadmap-hint">Tap a phase to see what it involves.</p>
+    <div class="phase-grid" id="phase-grid"><!-- populated by deck.js --></div>
+  </section>
+
+  <!-- 5 — OPTIONS INTRO -->
+  <section class="slide slide--section-intro" data-index="5">
+    <svg class="icon section-icon reveal reveal-1" width="34" height="34" viewBox="0 0 24 24"><path d="M12 3v11m0 0-4-4m4 4 4-4M5 21h14"/></svg>
+    <span class="reveal reveal-1 pill">Implementation Options</span>
+    <h2 class="reveal reveal-2">Two Ways to Move SAP Data to AWS</h2>
+    <p class="reveal reveal-3 body-lg intro-sub">Same destination, two different paths — here's how they compare.</p>
+  </section>
+
+  <!-- 6 — OPTIONS COMPARISON -->
+  <section class="slide slide--compare" data-index="6">
+    <div class="compare-grid">
+      <div class="compare-col compare-col--a slide-left">
+        <span class="pill pill--onnavy">Option 2</span>
+        <h3>SAP Datasphere <span class="poi">(POI)</span></h3>
+        <dl class="compare-list">
+          <dt>Concept</dt>
+          <dd>SAP Datasphere acts as a "pipe," not a storage destination — data passes straight through to AWS S3 without being persisted inside Datasphere.</dd>
+          <dt>Benefit</dt>
+          <dd>No additional storage cost inside SAP, and governance happens at the source (via CDS Views).</dd>
+          <dt>Cost</dt>
+          <dd>Billed based on the volume of data transferred (Premium Outbound Integration) — the less data moved, the lower the cost.</dd>
+          <dt>Best when</dt>
+          <dd>You want a fully SAP-managed solution with minimal added complexity.</dd>
+        </dl>
+      </div>
+      <div class="compare-badge">
+        <svg class="icon" width="20" height="20" viewBox="0 0 24 24"><path d="M7 7h10M7 12h10M7 17h6"/></svg>
+      </div>
+      <div class="compare-col compare-col--b slide-right">
+        <span class="pill pill--onnavy">Option 3</span>
+        <h3>OData-Based Extraction</h3>
+        <dl class="compare-list">
+          <dt>Concept</dt>
+          <dd>Uses the standard OData protocol (SAP Gateway/SEGW) to extract data without any direct database access.</dd>
+          <dt>Benefit</dt>
+          <dd>Uses existing standard SAP technology (SAP Gateway) — nothing new to purchase, and the connection is secured via SAP Cloud Connector.</dd>
+          <dt>Cost</dt>
+          <dd>No extra transfer fees; relies on an AWS Glue ETL Job to pull the data.</dd>
+          <dt>Best when</dt>
+          <dd>You want a secure, simple solution without additional middle layers (non-invasive).</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 — OPTIONS CLOSING -->
+  <section class="slide slide--options-closing" data-index="7">
+    <h2 class="reveal reveal-1">This one for&hellip; this one for&hellip;</h2>
+    <div class="summary-grid">
+      <div class="reveal reveal-2 summary-box">
+        <span class="pill">Option 2</span>
+        <p class="body-lg">If you want SAP to manage everything.</p>
+      </div>
+      <div class="reveal reveal-3 summary-box">
+        <span class="pill">Option 3</span>
+        <p class="body-lg">If you want lower added cost and a simpler connection.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 — GAME INTRO / QR -->
+  <section class="slide slide--game-intro" data-index="8">
+    <span class="reveal reveal-1 pill">Put It To The Test</span>
+    <h2 class="reveal reveal-2">Can You Order the Roadmap?</h2>
+    <p class="reveal reveal-3 body-lg intro-sub">Scan the code, enter your name, and drag the 9 phases into the right order — fastest correct order wins.</p>
+    <div class="reveal reveal-4 game-cta">
+      <div class="qr-card">
+        <img id="qr-img" alt="Scan to join the game" />
+        <p class="qr-url" id="qr-url">Loading link…</p>
+      </div>
+      <a class="btn" id="open-screen" href="screen.html" target="_blank" rel="noopener">
+        Open Big Screen Leaderboard
+        <svg class="icon" width="18" height="18" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<nav class="deck-nav">
+  <button class="nav-arrow nav-prev" aria-label="Previous slide">
+    <svg class="icon" width="22" height="22" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+  </button>
+  <div class="nav-dots" id="nav-dots"></div>
+  <button class="nav-arrow nav-next" aria-label="Next slide">
+    <svg class="icon" width="22" height="22" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+  </button>
+</nav>
+
+<script src="js/phases-data.js"></script>
+<script src="js/deck.js"></script>
+</body>
+</html>
