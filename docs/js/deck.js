@@ -148,14 +148,15 @@
     document.getElementById('qr-placeholder').style.display = 'none';
     document.getElementById('qr-url').textContent = url;
   }).catch(() => {
-    // no local game server reachable (e.g. viewing the public deck) — show a
-    // real, always-working QR that opens this presentation on a phone instead
-    // of a dead placeholder
+    // no local /api/qr reachable (e.g. this static build) — fall back to a
+    // pre-baked QR for the game server's venue WiFi address. Regenerate
+    // docs/deck-qr.png (via /api/qr on the laptop that will host the event)
+    // if the presenter's local IP changes before the event.
     const img = document.getElementById('qr-img');
     img.src = 'deck-qr.png';
     img.style.display = 'block';
     document.getElementById('qr-placeholder').style.display = 'none';
     document.getElementById('qr-url').textContent =
-      'Scan to open this presentation on your phone. The live drag-and-drop challenge runs during the presentation — your host will show the join code then.';
+      'Scan to join the challenge — works while connected to the presentation venue\'s WiFi.';
   });
 })();
