@@ -13,9 +13,12 @@
     dotsWrap.appendChild(dot);
   });
   const dots = Array.from(dotsWrap.children);
+  let introActive = !!document.getElementById('intro-video-wrap');
 
   function goTo(index) {
+    if (introActive) return; // block nav until the intro video hands off
     if (index < 0 || index >= slides.length) return;
+    const leaving = slides[current];
     slides[current].classList.remove('active');
     dots[current].classList.remove('active');
     current = index;
@@ -24,6 +27,10 @@
     prevBtn.disabled = current === 0;
     nextBtn.disabled = current === slides.length - 1;
 
+    // pause any cutscene video we're navigating away from
+    const leavingVideo = leaving.querySelector('video');
+    if (leavingVideo && !leavingVideo.paused) leavingVideo.pause();
+
     if (slides[current].classList.contains('slide--roadmap')) {
       const grid = document.getElementById('phase-grid');
       grid.classList.remove('animate');
@@ -31,6 +38,22 @@
       void grid.offsetWidth;
       requestAnimationFrame(() => grid.classList.add('animate'));
     }
+
+    if (slides[current].classList.contains('slide--video')) {
+      playSceneVideo(slides[current]);
+    }
+  }
+
+  function playSceneVideo(slideEl) {
+    const video = slideEl.querySelector('video');
+    if (!video) return;
+    video.currentTime = 0;
+    video.muted = false;
+    video.play().catch(() => {
+      // autoplay with sound blocked — fall back to muted, offer an unmute button
+      video.muted = true;
+      video.play().catch(() => {});
+    });
   }
 
   prevBtn.addEventListener('click', () => goTo(current - 1));
@@ -43,7 +66,52 @@
     el.addEventListener('click', () => goTo(parseInt(el.dataset.goto, 10)));
   });
 
-  goTo(0);
+  // video-2 auto-advances into the Roadmap section once it finishes
+  const video2 = document.getElementById('video-2');
+  if (video2) {
+    video2.addEventListener('ended', () => goTo(current + 1));
+    document.getElementById('skip-video-2').addEventListener('click', () => {
+      video2.pause();
+      goTo(current + 1);
+    });
+    document.getElementById('unmute-video-2').addEventListener('click', (e) => {
+      video2.muted = !video2.muted;
+      e.currentTarget.textContent = video2.muted ? '🔇' : '🔊';
+    });
+  }
+
+  // ---- intro video (video-1): plays once on load, then jumps straight into
+  // the Opening section — the title slide (index 0) is skipped in the auto
+  // flow but stays reachable manually via the Previous arrow ----
+  const introWrap = document.getElementById('intro-video-wrap');
+  const introVideo = document.getElementById('intro-video');
+
+  function finishIntro() {
+    introActive = false;
+    if (introWrap) {
+      introWrap.classList.add('hide');
+      setTimeout(() => introWrap.remove(), 650);
+    }
+    goTo(1);
+  }
+
+  if (introVideo) {
+    introVideo.addEventListener('ended', finishIntro, { once: true });
+    introVideo.addEventListener('error', finishIntro, { once: true });
+    introVideo.play().catch(finishIntro);
+
+    document.getElementById('skip-intro').addEventListener('click', () => {
+      introVideo.pause();
+      finishIntro();
+    });
+    document.getElementById('unmute-intro').addEventListener('click', (e) => {
+      introVideo.muted = !introVideo.muted;
+      e.currentTarget.textContent = introVideo.muted ? '🔇' : '🔊';
+    });
+  } else {
+    introActive = false;
+    goTo(0);
+  }
 
   // ---- 9-phase roadmap: interactive flip cards (no backend needed) ----
   const grid = document.getElementById('phase-grid');

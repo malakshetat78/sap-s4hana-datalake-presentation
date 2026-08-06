@@ -9,6 +9,15 @@
 </head>
 <body>
 
+<!-- INTRO VIDEO — the very first thing the audience sees, before any slide -->
+<div class="intro-video-wrap" id="intro-video-wrap">
+  <video id="intro-video" class="intro-video" autoplay muted playsinline preload="auto">
+    <source src="media/intro.mp4" type="video/mp4" />
+  </video>
+  <button class="unmute-btn" id="unmute-intro" type="button" aria-label="Unmute video">🔇</button>
+  <button class="btn ghost skip-intro-btn" id="skip-intro" type="button">Skip Intro</button>
+</div>
+
 <!-- subtle "data lake" wave motif, fixed behind every slide -->
 <svg class="wave-bg" viewBox="0 0 2400 220" preserveAspectRatio="none" aria-hidden="true">
   <path class="wave-path wave-path--back" d="M0,110 C 200,180 400,40 600,110 C 800,180 1000,40 1200,110 C 1400,180 1600,40 1800,110 C 2000,180 2200,40 2400,110 L2400,220 L0,220 Z" />
@@ -67,31 +76,40 @@
     </p>
   </section>
 
-  <!-- 3 — ROADMAP INTRO -->
-  <section class="slide slide--section-intro" data-index="3">
+  <!-- 3 — VIDEO 2: DATA LAKE WINS (plays once the persuasion section ends) -->
+  <section class="slide slide--video" data-index="3">
+    <video id="video-2" class="scene-video" playsinline preload="auto">
+      <source src="media/video2.mp4" type="video/mp4" />
+    </video>
+    <button class="unmute-btn" id="unmute-video-2" type="button" aria-label="Unmute video">🔇</button>
+    <button class="btn ghost skip-intro-btn" id="skip-video-2" type="button">Skip</button>
+  </section>
+
+  <!-- 4 — ROADMAP INTRO -->
+  <section class="slide slide--section-intro" data-index="4">
     <svg class="icon section-icon reveal reveal-1" width="34" height="34" viewBox="0 0 24 24"><path d="M3 17c2-2 4 2 6 0s4 2 6 0 4 2 6 0M3 12c2-2 4 2 6 0s4 2 6 0 4 2 6 0"/></svg>
     <span class="reveal reveal-1 pill">The Roadmap</span>
     <h2 class="reveal reveal-2">Nine Phases, One Continuous Journey</h2>
     <p class="reveal reveal-3 body-lg intro-sub">From getting SAP ready, to generative AI, to running it all in production.</p>
   </section>
 
-  <!-- 4 — ROADMAP: INTERACTIVE FLIP CARDS -->
-  <section class="slide slide--roadmap" data-index="4">
+  <!-- 5 — ROADMAP: INTERACTIVE FLIP CARDS -->
+  <section class="slide slide--roadmap" data-index="5">
     <h3 class="reveal reveal-1 roadmap-heading">The Roadmap — 9 Phases</h3>
     <p class="reveal reveal-2 body-lg intro-sub roadmap-hint">Tap a phase to see what it involves.</p>
     <div class="phase-grid" id="phase-grid"><!-- populated by deck.js --></div>
   </section>
 
-  <!-- 5 — OPTIONS INTRO -->
-  <section class="slide slide--section-intro" data-index="5">
+  <!-- 6 — OPTIONS INTRO -->
+  <section class="slide slide--section-intro" data-index="6">
     <svg class="icon section-icon reveal reveal-1" width="34" height="34" viewBox="0 0 24 24"><path d="M12 3v11m0 0-4-4m4 4 4-4M5 21h14"/></svg>
     <span class="reveal reveal-1 pill">Implementation Options</span>
     <h2 class="reveal reveal-2">Two Ways to Move SAP Data to AWS</h2>
     <p class="reveal reveal-3 body-lg intro-sub">Same destination, two different paths — here's how they compare.</p>
   </section>
 
-  <!-- 6 — OPTIONS COMPARISON -->
-  <section class="slide slide--compare" data-index="6">
+  <!-- 7 — OPTIONS COMPARISON -->
+  <section class="slide slide--compare" data-index="7">
     <div class="compare-grid">
       <div class="compare-col compare-col--a slide-left">
         <span class="pill pill--onnavy">Option 2</span>
@@ -127,8 +145,8 @@
     </div>
   </section>
 
-  <!-- 7 — OPTIONS CLOSING -->
-  <section class="slide slide--options-closing" data-index="7">
+  <!-- 8 — OPTIONS CLOSING -->
+  <section class="slide slide--options-closing" data-index="8">
     <h2 class="reveal reveal-1">This one for&hellip; this one for&hellip;</h2>
     <div class="summary-grid">
       <div class="reveal reveal-2 summary-box">
@@ -142,8 +160,8 @@
     </div>
   </section>
 
-  <!-- 8 — GAME INTRO / QR -->
-  <section class="slide slide--game-intro" data-index="8">
+  <!-- 9 — GAME INTRO / QR -->
+  <section class="slide slide--game-intro" data-index="9">
     <span class="reveal reveal-1 pill">Put It To The Test</span>
     <h2 class="reveal reveal-2">Can You Order the Roadmap?</h2>
     <p class="reveal reveal-3 body-lg intro-sub">Scan the code, enter your name, and drag the 9 phases into the right order — fastest correct order wins.</p>
