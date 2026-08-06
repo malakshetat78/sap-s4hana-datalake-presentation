@@ -70,8 +70,14 @@
   });
 
   // ---- load a live QR code for the game (only present when served by the local Node app) ----
-  fetch('api/qr').then(r => r.json()).then(({ url, dataUrl }) => {
-    document.getElementById('qr-img').src = dataUrl;
+  fetch('api/qr').then(r => {
+    if (!r.ok) throw new Error('no local game server');
+    return r.json();
+  }).then(({ url, dataUrl }) => {
+    const img = document.getElementById('qr-img');
+    img.src = dataUrl;
+    img.style.display = 'block';
+    document.getElementById('qr-placeholder').style.display = 'none';
     document.getElementById('qr-url').textContent = url;
   }).catch(() => {
     document.getElementById('qr-url').textContent =

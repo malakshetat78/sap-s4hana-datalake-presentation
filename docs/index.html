@@ -149,7 +149,13 @@
     <p class="reveal reveal-3 body-lg intro-sub">Scan the code, enter your name, and drag the 9 phases into the right order — fastest correct order wins.</p>
     <div class="reveal reveal-4 game-cta">
       <div class="qr-card">
-        <img id="qr-img" alt="Scan to join the game" />
+        <img id="qr-img" alt="Scan to join the game" style="display:none" />
+        <div class="qr-placeholder" id="qr-placeholder">
+          <svg class="icon" width="56" height="56" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="7" height="7" rx="1.2"/><rect x="14" y="3" width="7" height="7" rx="1.2"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.2"/><path d="M14 14h3v3h-3zM19 14v7M14 21h3"/>
+          </svg>
+        </div>
         <p class="qr-url" id="qr-url">Loading link…</p>
       </div>
       <a class="btn" id="open-screen" href="screen.html" target="_blank" rel="noopener">

@@ -1,4 +1,13 @@
 (function () {
+  if (typeof io === 'undefined') {
+    document.body.innerHTML =
+      '<section class="screen active"><div class="mobile-wrap">' +
+      '<span class="pill">Live Event Only</span>' +
+      '<h1 class="mobile-h1">This screen needs the live server</h1>' +
+      '<p class="mobile-sub">The leaderboard only works while the presenter\'s local game server is running at the event.</p>' +
+      '</div></section>';
+    return;
+  }
   const socket = io();
 
   const leaderboardScreen = document.getElementById('screen-leaderboard');

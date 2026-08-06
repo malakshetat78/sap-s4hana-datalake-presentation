@@ -1,4 +1,13 @@
 (function () {
+  if (typeof io === 'undefined') {
+    document.body.innerHTML =
+      '<section class="screen active"><div class="mobile-wrap">' +
+      '<span class="pill">Live Event Only</span>' +
+      '<h1 class="mobile-h1">This challenge isn\'t running right now</h1>' +
+      '<p class="mobile-sub">The Roadmap Challenge only works while the presenter\'s local game server is running at the event. Scan the QR code shown live on screen to join.</p>' +
+      '</div></section>';
+    return;
+  }
   const socket = io();
 
   const screens = {
