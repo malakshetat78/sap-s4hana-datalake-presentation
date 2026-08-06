@@ -10,9 +10,9 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-app.use(express.static(__dirname + '/public'));
-app.get('/mobile', (req, res) => res.sendFile(__dirname + '/public/mobile.html'));
-app.get('/screen', (req, res) => res.sendFile(__dirname + '/public/screen.html'));
+app.use(express.static(__dirname + '/docs'));
+app.get('/mobile', (req, res) => res.sendFile(__dirname + '/docs/mobile.html'));
+app.get('/screen', (req, res) => res.sendFile(__dirname + '/docs/screen.html'));
 
 // ---------------------------------------------------------------------------
 // The 9 roadmap phases — single source of truth, shared by the deck,
