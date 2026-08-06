@@ -148,7 +148,14 @@
     document.getElementById('qr-placeholder').style.display = 'none';
     document.getElementById('qr-url').textContent = url;
   }).catch(() => {
+    // no local game server reachable (e.g. viewing the public deck) — show a
+    // real, always-working QR that opens this presentation on a phone instead
+    // of a dead placeholder
+    const img = document.getElementById('qr-img');
+    img.src = 'deck-qr.png';
+    img.style.display = 'block';
+    document.getElementById('qr-placeholder').style.display = 'none';
     document.getElementById('qr-url').textContent =
-      'This challenge runs live during the presentation — your host will display the join code on screen.';
+      'Scan to open this presentation on your phone. The live drag-and-drop challenge runs during the presentation — your host will show the join code then.';
   });
 })();
